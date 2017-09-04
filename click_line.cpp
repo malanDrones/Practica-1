@@ -173,6 +173,9 @@ int main(int argc,char* argv[])
             /* Draw all points */
             for (int i = 0; i < points.size(); ++i) {
                 circle(imagenClick, (Point)points[i], 5, Scalar( 0, 0, 255 ), CV_FILLED);
+                if(points.size() > 1){
+					line(imagenClick,(Point)points[i-1], (Point)points[i],Scalar( 0, 0, 255 ), 2, 8);
+				}
             }
 
             /* Show image */
@@ -187,7 +190,7 @@ int main(int argc,char* argv[])
 			cout << "No image data.. " << endl;
 		}
         
-        imshow("Original", imagenClick);
+        imshow("Click", imagenClick);
         imshow("Flipped", flippedImage);
 
         char key = waitKey(5);
