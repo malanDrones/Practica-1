@@ -14,8 +14,6 @@
 #include <stdio.h>
 #include <iostream>
 
-//Comentario
-
 using namespace std;
 using namespace cv;
 
@@ -38,7 +36,6 @@ int vG;
 int vB;
 
 Mat imagenClick;
-Mat flippedImage;
 
 // Convert CRawImage to Mat
 void rawToMat( Mat &destImage, CRawImage* sourceImage)
@@ -76,22 +73,6 @@ void mouseCoordinatesExampleCallback(int event, int x, int y, int flags, void* p
             break;
         
     }
-}
-
-//Metodo flip image
-
-void flipImageBasic(const Mat &sourceImage, Mat &destinationImage)
-{
-	if (destinationImage.empty())
-		destinationImage = Mat(sourceImage.rows, sourceImage.cols, sourceImage.type());
-
-	for (int y = 0; y < sourceImage.rows; ++y)
-		for (int x = 0; x < sourceImage.cols / 2; ++x)
-			for (int i = 0; i < sourceImage.channels(); ++i)
-			{
-				destinationImage.at<Vec3b>(y, x)[i] = sourceImage.at<Vec3b>(y, sourceImage.cols - 1 - x)[i];
-				destinationImage.at<Vec3b>(y, sourceImage.cols - 1 - x)[i] = sourceImage.at<Vec3b>(y, x)[i];
-			}
 }
 
 int main(int argc,char* argv[])
@@ -168,9 +149,7 @@ int main(int argc,char* argv[])
 		rawToMat(currentImage, image);
 		imshow("ParrotCam", currentImage);
         imagenClick=currentImage;
-        flipImageBasic(imagenClick,flippedImage);
-        imshow("Original", imagenClick);
-        imshow("Flipped", flippedImage);
+        imshow("Click", imagenClick);
 
         char key = waitKey(5);
 		switch (key) {
