@@ -19,6 +19,7 @@ void blanco_negro(const Mat &sourceImage, Mat &destinationImage)
 {
 
 int prom = 0;
+int treshold = 120;
 
 if (destinationImage.empty())
 		destinationImage = Mat(sourceImage.rows, sourceImage.cols, sourceImage.type());
@@ -31,7 +32,11 @@ if (destinationImage.empty())
                 prom += sourceImage.at<Vec3b>(y, x)[i];
 			}prom = prom/3;
 			for (int i = 0; i < sourceImage.channels(); ++i){
-                destinationImage.at<Vec3b>(y, x)[i] = prom;
+                if(prom > treshold){
+                destinationImage.at<Vec3b>(y, x)[i] = 0;
+                }else{
+                destinationImage.at<Vec3b>(y, x)[i] = 250;
+                }
 			}
         }
 
@@ -63,3 +68,5 @@ break;
 }
 return 0;
 }
+
+
