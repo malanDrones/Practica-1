@@ -1,6 +1,6 @@
 /*
 * File:   ColorSpaces.cpp
-* Author: 
+* Vision para robots
 *
 * Created on 7 September, 2017
 */
